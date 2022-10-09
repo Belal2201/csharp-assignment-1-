@@ -12,30 +12,35 @@ namespace AddressBook.Services
     {
         // new inctance of a contact person 
         public List<Contactperson> contacts = new List<Contactperson>();
-
+        // skapar kontakt 
         public void Create()
         {
+            Console.Clear();
             var contactperson = new Contactperson();
             Console.WriteLine("#### SKAPA EN KONTAKTPERSON ####");
-            Console.WriteLine("ANGE FÖRNAMN: ");
+            Console.Write("ANGE FÖRNAMN: ");
             contactperson.FirstName = Console.ReadLine(); 
-            Console.WriteLine("ANGE EFTERNAMN: ");
+            Console.Write("ANGE EFTERNAMN: ");
             contactperson.LastName = Console.ReadLine();
-            Console.WriteLine("ANGE EMAIL: ");
+            Console.Write("ANGE EMAIL: ");
             contactperson.Email = Console.ReadLine();
-            Console.WriteLine("ANGE ADRESS: ");
+            Console.Write("ANGE ADRESS: ");
             contactperson.Adress = Console.ReadLine();
             contacts.Add(contactperson);
         }
         public void Listcontact()
+            // lista kontakter
         {
+            Console.Clear();
             foreach (var contact in contacts)
                 Console.WriteLine($"{contact.Id} - {contact.FirstName} {contact.LastName}");
             Console.ReadKey();
         }
 
         public void MenuOptions()
+            // olika alternativ till menyn 
         {
+            Console.Clear();
             Console.WriteLine("#### ADRESSBOKEN ####");
             Console.WriteLine("1. Skapa ny kontakt");
             Console.WriteLine("2. Visa adressboken");
@@ -65,12 +70,18 @@ namespace AddressBook.Services
                     DeleteContact();
                     break;
 
+                case "Q":
+                    Environment.Exit(0);
+                    break;
+
             }
             Console.ReadKey();
         }
 
         public void ShowDetails()
+            // visa detljerade info om kotakt
         {
+            Console.Clear();
             Console.Write("Ange Id på den du vill detaljerad information för: ");
             var id = Guid.Parse(Console.ReadLine());
             var contact = contacts.FirstOrDefault(x => x.Id == id);
@@ -82,7 +93,9 @@ namespace AddressBook.Services
         }
 
         public void UpdateContact()
+            // metod för att updatera en kontakt 
         {
+            Console.Clear();
             Console.Write("Ange Id på den du vill uppdatera: ");
             var id = Guid.Parse(Console.ReadLine());
             var contact = contacts.FirstOrDefault(x => x.Id == id);
@@ -113,7 +126,9 @@ namespace AddressBook.Services
         }
 
         public void DeleteContact()
+            // metod för att ta bort en kotakt 
         {
+            Console.Clear();
             Console.Write("Ange Id på den du vill ta bort: ");
             var id = Guid.Parse(Console.ReadLine());
             var contact = contacts.FirstOrDefault(x => x.Id == id);
